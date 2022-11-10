@@ -1,0 +1,14 @@
+.navbar{
+    margin: 10px;
+    padding: 50px;
+    background-color: salmon;
+}
+#navbar-text{
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+}
+
+.card-header{
+    background-color: #0799ed;
+}
