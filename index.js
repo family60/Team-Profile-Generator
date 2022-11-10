@@ -1,6 +1,6 @@
 const generateHTML = require("./src/generateHTML");
 const Engineer = require("./lib/engineer");
-const Intern = require("./lib/intern");
+const Intern = require("./lib/intern"); 
 const Manager = require("./lib/manager");
 const inquirer = require("inquirer");
 const fs = require("fs");
@@ -13,7 +13,7 @@ const addManager = () => {
         {
             type: "input",
             name: "name",
-            message: "Enter information about the manager",
+            message: "Enter Manager's name",
             validate: managerName => {
                 if(managerName){
                     return true;
@@ -174,8 +174,8 @@ const addEmployee = () => {
 };
 
 //generating html page using fs
-const writeFile = data =>{
-    fs.writeFile("./dist/index.html", data, err =>{
+const writeToFile = (filePath, data) =>{
+    fs.writeFile(filePath, data, err =>{
         if(err){
             console.log(err);
             return;
@@ -186,10 +186,8 @@ const writeFile = data =>{
 };
 
 //initiallize the app
-addManager().then(addEmployee).then(teamMembers => {
-    return generateHTML(teamMembers);
-}).then(htmlPage =>{
-    return writeFile(htmlPage);
+addManager().then(addEmployee).then(function() {
+    return writeToFile("./dist/index.html", generateHTML(teamMembers));
 }).catch(err =>{
     console.log(err);
 });
